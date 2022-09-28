@@ -1,0 +1,102 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crup Products</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body">
+    
+    <nav class="navbar bg-nav ">
+        <div class="w-75 m-auto">
+          <a class="navbar-brand text-white" href="#">
+            Crud Products
+          </a>
+        </div>
+    </nav>
+    
+    <section>
+        <div class="w-75 m-auto">
+            <div class="d-flex justify-content-between mb-4 ">
+                <input class="form-control w-25 search" type="text" placeholder="search...">
+                <button type="button" class="btnAdd btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+            </div>
+            <div class="displayarea w-100 m-auto shadow ">
+                <div id="diplayArea">
+                    <table class=" table table-borderless table-hover  ">
+                        <thead class="border-bottom ">
+                            <th class="py-3">Name</th>
+                            <th class="py-3">Price</th>
+                            <th class="py-3">Dics</th>
+                            <th class="py-3">Total</th>
+                            <th class=" p-0 py-3 ">Category</th>
+                            <th class="py-3">Amount</th>
+                            <th class="py-3">Action</th>
+                        </thead>
+                        <tbody id="displayPro">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">    
+                <div class="">
+                    <label class="my-1">Name</label>
+                    <input class="form-control name" type="text">
+                    <p id="alertName" class="m-0 d-none text-danger">Please Enter The Name Product</p>
+                </div>
+                <div class="w-100 m-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <label class="my-1">Price</label>
+                                <input class="form-control price " type="text">
+                                <p id="alertPrice" class="m-0 d-none text-danger">Please Enter The Price</p>
+                            </div> 
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <label class="my-1">Disc</label>
+                                <input class="form-control disc" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="my-1">Amount</label>
+                    <input class="form-control amount"  type="text">
+                    <p id="alertAmount"  class="m-0 d-none text-danger">Please Enter a Number</p>
+                </div>  
+                <div>
+                    <label class="my-1">Category</label>
+                    <input class="form-control category" type="text">
+                    <p id="alertCategory"  class="m-0 d-none text-danger">Please Enter Category</p>
+                </div>                
+            </div>
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div id="btnarea">
+                <button  id="addProducts"  type="button"  class="btn btn-primary">Add Products</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/mine.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.bg-nav{
+    padding: 20px;
+    background-color: #0d6efd;
+}
+
+.navbar-brand{
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+}
+
+section{
+    margin-top: 30px;
+}
+
+.btnAdd{
+    background: #0078ff;
+    border: 0;
+    padding: 10px 50px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+label{
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, Helvetica, sans-serif;
+}
+
+i{
+    cursor: pointer;
+}
+.updata{
+    color: #0078ff;
+}
+
+.delete
+{
+    color: red;
+}
+
+th{
+    width: 100px !important;
+}
+
