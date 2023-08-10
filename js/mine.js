@@ -11,7 +11,7 @@ let alertPrice =document.querySelector("#alertPrice")
 let alertName = document.querySelector("#alertName")
 let alertCategory = document.querySelector("#alertCategory")
 let regexNum = /[0-9]/
-
+let pDice;
 
 inputDisc.value = 0+"%"
 
@@ -25,7 +25,6 @@ if(localStorage.getItem("dataProdctS") != null)
     displayProudcts()   
 }
 else{
-
     storageDataProudct = [];
     diplayArea.innerHTML = `<h2 class="text-center py-5">Empty</h2>`;
 }
@@ -33,16 +32,14 @@ else{
 
 
 btnAdd.addEventListener("click" , addProducts )
-
-
 function addProducts(){
-    
+    pDice = inputDisc.value.includes("%") ? inputDisc.value.slice(0, inputDisc.value.length - 1) : inputDisc.value
     if(matchAmount() == false && matchPrice() == false  && emptyName() == false){
         let dataProudct ={
             pName: inputName.value,
             pPrice: inputPrice.value,
-            pDice: inputDisc.value.includes("%")? inputDisc.value.slice(0 ,inputDisc.value.length -1): inputDisc.value ,
-            PTotal: inputPrice.value - inputPrice.value * (inputDisc.value.includes("%")? inputDisc.value.slice(0 ,inputDisc.value.length -1)/100: inputDisc.value/100),
+            pDice: pDice,
+            PTotal: Number((inputPrice.value * inputAmount.value) - ((inputPrice.value * inputAmount.value) * (pDice / 100))).toFixed(2),
             pAmount: inputAmount.value,
             pCate: inputCategory.value,
         }
@@ -61,7 +58,6 @@ function addProducts(){
 
 
 function displayProudcts(){
-
     let displayP = ``;
     for(let i = 0; i < storageDataProudct.length; i++)
     {
@@ -75,7 +71,6 @@ function displayProudcts(){
                         <td class="border-bottom py-2"><i onclick="btnUpData(${i})" data-bs-toggle="modal" data-bs-target="#exampleModal" class="updata fa-regular fa-pen-to-square me-1"></i> <i onclick="btnDelet(${i})"  class="delete fa-regular fa-trash-can ms-1"></i></td>
                      </tr>`
     }
-
     displayPro.innerHTML = displayP;
 }
 
@@ -88,8 +83,6 @@ function removeInput(){
     inputCategory.value =""
 }
 
-
-
 function btnUpData(index){
     inputName.value = storageDataProudct[index].pName
     inputPrice.value = storageDataProudct[index].pPrice
@@ -99,13 +92,14 @@ function btnUpData(index){
     btnarea.innerHTML = `<button  onclick="displayUpdata(${index})" type="button" data-bs-dismiss="modal" class="btn btn-primary">Add Updata</button>`
 }
 
-function displayUpdata(indexP){
-    storageDataProudct[indexP].pName = inputName.value
-    storageDataProudct[indexP].pPrice = inputPrice.value
-    storageDataProudct[indexP].pDice = inputDisc.value.includes("%")? inputDisc.value.slice(0 ,inputDisc.value.length -1): inputDisc.value
-    storageDataProudct[indexP].PTotal =  inputPrice.value - inputPrice.value * (inputDisc.value.includes("%")? inputDisc.value.slice(0 ,inputDisc.value.length -1)/100 : inputDisc.value/100)
-    storageDataProudct[indexP].pAmount = inputAmount.value
-    storageDataProudct[indexP].pCate =inputCategory.value
+function displayUpdata(index){
+    pDice = inputDisc.value.includes("%") ? inputDisc.value.slice(0, inputDisc.value.length - 1) : inputDisc.value
+    storageDataProudct[index].pName = inputName.value
+    storageDataProudct[index].pPrice = inputPrice.value
+    storageDataProudct[index].pDice = pDice
+    storageDataProudct[index].PTotal =  Number((inputPrice.value * inputAmount.value) - ((inputPrice.value * inputAmount.value) * (pDice / 100))).toFixed(2)
+    storageDataProudct[index].pAmount = inputAmount.value
+    storageDataProudct[index].pCate =inputCategory.value
     localStorage.setItem("dataProdctS" , JSON.stringify(storageDataProudct))
     displayProudcts()
     removeInput()
@@ -126,7 +120,6 @@ function btnDelet(index){
 
 search.addEventListener("keyup" ,function(){
     let dSearch = ``;
-   
     for(let i = 0; i < storageDataProudct.length; i++)
     {
         if(storageDataProudct[i].pName.toLowerCase().includes(this.value.toLowerCase()))
@@ -142,7 +135,6 @@ search.addEventListener("keyup" ,function(){
          </tr>`
         }
     }
-
     displayPro.innerHTML = dSearch;
 })
 
